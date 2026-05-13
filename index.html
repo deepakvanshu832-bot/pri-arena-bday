@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Priyanka 💜 | Pri Arena Special</title>
+    
+    <!-- External Assets -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #9d50bb;
+            --secondary: #6e48aa;
+            --accent: #00f2fe;
+            --neon-pink: #ff00de;
+        }
+
+        body {
+            background: #050505;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; /* Handled by JS for scrolling */
+            margin: 0;
+        }
+
+        .font-sync { font-family: 'Syncopate', sans-serif; }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .neon-border {
+            box-shadow: 0 0 15px var(--primary), inset 0 0 15px var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        /* Particles Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .page {
+            display: none;
+            height: 100vh;
+            width: 100%;
+            padding: 2rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .active-page { display: flex; }
+
+        /* Custom Cursor */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s;
+        }
+
+        /* YouTube Aesthetic */
+        .yt-red { color: #FF0000; }
+        .sub-btn {
+            background: #cc0000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .sub-btn:hover { background: #ff0000; transform: scale(1.05); }
+
+        /* Floating Animation */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .float { animation: floating 3s ease-in-out infinite; }
+
+        .hidden-el { opacity: 0; transform: translateY(30px); }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Audio Player (Hidden) -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Mute/Unmute Toggle -->
+    <div class="fixed top-5 right-5 z-50">
+        <button onclick="toggleMusic()" class="glass p-4 rounded-full neon-border">
+            <i id="music-icon" class="fas fa-volume-mute"></i>
+        </button>
+    </div>
+
+    <!-- Navigation Overlay (Progress Bar) -->
+    <div class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex gap-2">
+        <div id="progress-dots" class="flex gap-2"></div>
+    </div>
+
+    <!-- PAGE 1: GRAND INTRO -->
+    <section id="page1" class="page active-page">
+        <div class="text-center">
+            <h1 class="text-6xl md:text-8xl font-sync font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 drop-shadow-lg">
+                HAPPY BIRTHDAY <br> PRIYANKA 🎂
+            </h1>
+            <p class="text-xl md:text-2xl text-cyan-300 mb-8 opacity-0" id="sub-title">A special surprise for the amazing creator behind Pri Arena 💜</p>
+            <button onclick="nextPage()" class="glass px-10 py-4 text-xl font-bold hover:bg-white hover:text-purple-900 transition-all duration-500 rounded-full neon-border float">
+                Enter Surprise ✨
+            </button>
+        </div>
+    </section>
+
+    <!-- PAGE 2: TIMELINE -->
+    <section id="page2" class="page">
+        <h2 class="text-4xl font-sync mb-10">Our Journey Together 💜</h2>
+        <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass p-6 hover:scale-105 transition-transform">
+                <h3 class="text-purple-400 font-bold">First Conversation</h3>
+                <p class="text-sm opacity-80">The day the magic started...</p>
+            </div>
+            <div class="glass p-6 hover:scale-105 transition-transform">
+                <h3 class="text-pink-400 font-bold">YouTube Talks</h3>
+                <p class="text-sm opacity-80">Brainstorming ideas for Pri Arena!</p>
+            </div>
+            <div class="glass p-6 hover:scale-105 transition-transform">
+                <h3 class="text-cyan-400 font-bold">Late Night Chats</h3>
+                <p class="text-sm opacity-80">Sharing dreams and endless laughter.</p>
+            </div>
+            <div class="glass p-6 hover:scale-105 transition-transform">
+                <h3 class="text-yellow-400 font-bold">The Strongest Friend</h3>
+                <p class="text-sm opacity-80">Thank you for always being there.</p>
+            </div>
+        </div>
+        <button onclick="nextPage()" class="mt-10 opacity-50 hover:opacity-100">Next Page <i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <!-- PAGE 3: PRI ARENA ZONE -->
+    <section id="page3" class="page">
+        <div class="glass w-full max-w-5xl p-8 border-t-4 border-red-600">
+            <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
+                <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-4xl font-bold">PA</div>
+                <div class="text-center md:text-left flex-grow">
+                    <h2 class="text-4xl font-bold">Pri Arena <i class="fas fa-check-circle text-blue-400 text-xl"></i></h2>
+                    <p class="text-gray-400">331 Subscribers • 50 Videos</p>
+                </div>
+                <button class="sub-btn">SUBSCRIBE</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="aspect-video bg-gray-800 rounded-lg relative flex items-center justify-center overflow-hidden">
+                    <i class="fab fa-youtube text-5xl text-red-600"></i>
+                    <div class="absolute bottom-2 left-2 text-xs bg-black p-1">10:05</div>
+                </div>
+                <div class="aspect-video bg-gray-800 rounded-lg relative flex items-center justify-center overflow-hidden">
+                    <i class="fab fa-youtube text-5xl text-red-600"></i>
+                    <div class="absolute bottom-2 left-2 text-xs bg-black p-1">15:30</div>
+                </div>
+                <div class="aspect-video bg-gray-800 rounded-lg relative flex items-center justify-center overflow-hidden">
+                    <i class="fab fa-youtube text-5xl text-red-600"></i>
+                    <div class="absolute bottom-2 left-2 text-xs bg-black p-1">08:45</div>
+                </div>
+            </div>
+            <div class="mt-8">
+                <p class="font-bold border-b border-gray-700 pb-2">Comments</p>
+                <div class="py-4 space-y-4">
+                    <p class="text-sm"><span class="font-bold text-cyan-400">Fan123:</span> Best creator ever 💜</p>
+                    <p class="text-sm"><span class="font-bold text-pink-400">StreamerLife:</span> Keep growing Pri Arena! 🚀</p>
+                </div>
+            </div>
+        </div>
+        <button onclick="nextPage()" class="mt-10">See Memories <i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <!-- PAGE 4: PHOTO GALLERY -->
+    <section id="page4" class="page">
+        <h2 class="text-3xl font-sync mb-8">Memories Captured 📸</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl">
+            <div class="glass p-2 rotate-3 hover:rotate-0 transition-all cursor-pointer">
+                <img src="https://via.placeholder.com/300?text=Smile" class="rounded-lg">
+                <p class="text-center mt-2 text-black bg-white font-mono text-xs">Bestie Vibes</p>
+            </div>
+            <div class="glass p-2 -rotate-2 hover:rotate-0 transition-all cursor-pointer">
+                <img src="https://via.placeholder.com/300?text=Gamer" class="rounded-lg">
+                <p class="text-center mt-2 text-black bg-white font-mono text-xs">Stream Setup</p>
+            </div>
+            <div class="glass p-2 rotate-1 hover:rotate-0 transition-all cursor-pointer">
+                <img src="https://via.placeholder.com/300?text=Fun" class="rounded-lg">
+                <p class="text-center mt-2 text-black bg-white font-mono text-xs">Late Night</p>
+            </div>
+        </div>
+        <button onclick="nextPage()" class="mt-10">Read My Message <i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <!-- PAGE 5: EMOTIONAL LETTER -->
+    <section id="page5" class="page">
+        <div class="glass max-w-2xl p-10 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500"></div>
+            <h2 class="text-3xl font-bold mb-6">Dearest Priyanka,</h2>
+            <p id="typewriter" class="leading-relaxed text-lg italic text-gray-200">
+                Watching you build Pri Arena has been the most inspiring thing... You aren't just a creator; you are a light in the lives of everyone who knows you. Your positivity and kindness are your real superpowers. On your birthday, I just want to say—keep shining, keep gaming, and never stop being the incredible person you are.
+            </p>
+            <div class="mt-8 text-pink-400 font-bold">Forever your biggest fan 💜</div>
+        </div>
+        <button onclick="nextPage()" class="mt-10">Let's Play! <i class="fas fa-gamepad"></i></button>
+    </section>
+
+    <!-- PAGE 6: INTERACTIVE GAME -->
+    <section id="page6" class="page">
+        <h2 class="text-3xl font-sync mb-4">Catch the Birthday Hearts! 💜</h2>
+        <p class="mb-4">Score: <span id="score" class="text-cyan-400 font-bold text-2xl">0</span></p>
+        <div id="game-area" class="glass w-full max-w-2xl h-80 relative overflow-hidden cursor-crosshair">
+            <!-- Hearts will be spawned here -->
+            <div id="start-game" class="absolute inset-0 flex items-center justify-center bg-black/60 z-10">
+                <button onclick="startGame()" class="bg-purple-600 px-6 py-2 rounded-full font-bold">Start Game</button>
+            </div>
+        </div>
+        <button onclick="nextPage()" class="mt-10">Compliment Machine <i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <!-- PAGE 7: COMPLIMENT GENERATOR -->
+    <section id="page7" class="page">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold mb-10">The Priyanka Excellence Machine</h2>
+            <div id="compliment-display" class="glass p-8 text-2xl font-bold min-h-[100px] flex items-center justify-center mb-8 neon-border">
+                Click the button for a truth bomb!
+            </div>
+            <button onclick="generateCompliment()" class="bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 rounded-full font-bold shadow-lg hover:scale-110 transition-transform">
+                Generate Compliment ✨
+            </button>
+        </div>
+        <button onclick="nextPage()" class="mt-20">Look at the Stars <i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <!-- PAGE 8: DREAM & FUTURE -->
+    <section id="page8" class="page">
+        <div class="text-center max-w-4xl">
+            <h2 class="text-5xl font-sync mb-10">The Road to 1M Subscribers 🚀</h2>
+            <div class="w-full bg-gray-800 rounded-full h-8 mb-10 relative">
+                <div class="bg-gradient-to-r from-purple-600 to-cyan-400 h-8 rounded-full" style="width: 75%"></div>
+                <span class="absolute inset-0 flex items-center justify-center font-bold">Future Success: 100% Guaranteed</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass p-6">
+                    <i class="fas fa-star text-yellow-400 text-3xl mb-4"></i>
+                    <p>Global Impact</p>
+                </div>
+                <div class="glass p-6">
+                    <i class="fas fa-award text-cyan-400 text-3xl mb-4"></i>
+                    <p>Diamond Creator Award</p>
+                </div>
+                <div class="glass p-6">
+                    <i class="fas fa-heart text-pink-400 text-3xl mb-4"></i>
+                    <p>Millions of Lives Touched</p>
+                </div>
+            </div>
+        </div>
+        <button onclick="nextPage()" class="mt-10">Let's Celebrate! <i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <!-- PAGE 9: CELEBRATION ROOM -->
+    <section id="page9" class="page">
+        <div class="text-center">
+            <div class="text-9xl mb-10 float">🎂</div>
+            <div class="flex gap-4 justify-center">
+                <button onclick="celebrate()" class="bg-pink-500 p-4 rounded-xl font-bold hover:bg-pink-400">Blow Candles 🕯️</button>
+                <button onclick="celebrate()" class="bg-purple-500 p-4 rounded-xl font-bold hover:bg-purple-400">Pop Confetti 🎉</button>
+            </div>
+            <p class="mt-10 text-xl animate-pulse">It's your day, Priyanka! Make a wish!</p>
+        </div>
+        <button onclick="nextPage()" class="mt-10">Final Words <i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <!-- PAGE 10: FINAL ENDING -->
+    <section id="page10" class="page">
+        <div class="text-center">
+            <h2 class="text-5xl font-sync font-bold mb-6">Happy Birthday Priyanka 💜</h2>
+            <p class="text-xl opacity-80 mb-10">Keep smiling, keep shining, and keep making <span class="text-cyan-400">Pri Arena</span> amazing.</p>
+            <div class="glass p-10 neon-border inline-block">
+                <p class="text-3xl font-bold">You deserve all the happiness in the world. ✨</p>
+            </div>
+            <br>
+            <button onclick="goToPage(0)" class="mt-10 text-sm underline opacity-50">Replay the surprise</button>
+        </div>
+    </section>
+
+    <script>
+        // --- PAGE CONTROLLER ---
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+        const progressDots = document.getElementById('progress-dots');
+
+        // Initialize progress dots
+        pages.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = `w-3 h-3 rounded-full bg-white/20 transition-all duration-300`;
+            dot.id = `dot-${i}`;
+            progressDots.appendChild(dot);
+        });
+
+        function goToPage(index) {
+            pages[currentPage].classList.remove('active-page');
+            gsap.to(pages[currentPage], { opacity: 0, duration: 0.5 });
+            
+            currentPage = index;
+            
+            pages[currentPage].classList.add('active-page');
+            gsap.fromTo(pages[currentPage], { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.8 });
+            
+            // Update dots
+            document.querySelectorAll('#progress-dots div').forEach((d, i) => {
+                d.style.background = i === currentPage ? 'var(--accent)' : 'rgba(255,255,255,0.2)';
+                d.style.width = i === currentPage ? '20px' : '12px';
+            });
+
+            if(index === 8) celebrate(); // Fireworks on page 9
+        }
+
+        function nextPage() {
+            if (currentPage < pages.length - 1) {
+                if(currentPage === 0) startMusic();
+                goToPage(currentPage + 1);
+            }
+        }
+
+        // --- MUSIC ---
+        const music = document.getElementById('bg-music');
+        const mIcon = document.getElementById('music-icon');
+        
+        function startMusic() {
+            music.play();
+            mIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                mIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+            } else {
+                music.pause();
+                mIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
+            }
+        }
+
+        // --- CANVAS PARTICLES ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = `hsla(${Math.random() * 60 + 260}, 70%, 60%, 0.3)`;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        animate();
+
+        // --- CURSOR ---
+        window.addEventListener('mousemove', (e) => {
+            gsap.to('#cursor', { x: e.clientX, y: e.clientY, duration: 0.1 });
+        });
+
+        // --- COMPLIMENT GENERATOR ---
+        const compliments = [
+            "You light up every room you walk into ✨",
+            "A true gem of a friend and human 💜",
+            "The future of YouTube is named Pri Arena! 🚀",
+            "Your smile is literally contagious 😊",
+            "You are stronger than you even realize 💪",
+            "The world is lucky to have you!",
+            "Keep being authentic, it's your best look ✨"
+        ];
+
+        function generateCompliment() {
+            const display = document.getElementById('compliment-display');
+            const rand = compliments[Math.floor(Math.random() * compliments.length)];
+            gsap.to(display, { opacity: 0, y: -20, duration: 0.3, onComplete: () => {
+                display.innerText = rand;
+                gsap.to(display, { opacity: 1, y: 0, duration: 0.3 });
+            }});
+            confetti({ particleCount: 50, spread: 70, origin: { y: 0.6 }, colors: ['#9d50bb', '#6e48aa'] });
+        }
+
+        // --- MINI GAME ---
+        let score = 0;
+        function startGame() {
+            document.getElementById('start-game').style.display = 'none';
+            score = 0;
+            document.getElementById('score').innerText = score;
+            const gameInterval = setInterval(() => {
+                if (currentPage !== 5) { clearInterval(gameInterval); return; }
+                spawnHeart();
+            }, 800);
+        }
+
+        function spawnHeart() {
+            const area = document.getElementById('game-area');
+            const heart = document.createElement('div');
+            heart.innerHTML = '💜';
+            heart.className = 'absolute cursor-pointer text-2xl transition-all hover:scale-150';
+            heart.style.left = Math.random() * 90 + '%';
+            heart.style.top = '100%';
+            area.appendChild(heart);
+
+            gsap.to(heart, { 
+                top: '-10%', 
+                duration: 3, 
+                onComplete: () => heart.remove() 
+            });
+
+            heart.onclick = () => {
+                score++;
+                document.getElementById('score').innerText = score;
+                heart.remove();
+                confetti({ particleCount: 10, origin: { x: 0.5, y: 0.5 } });
+            };
+        }
+
+        // --- CELEBRATION ---
+        function celebrate() {
+            const duration = 5 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+
+                const particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        // Initial Intro Animation
+        window.onload = () => {
+            gsap.to("#sub-title", { opacity: 1, y: 0, delay: 1, duration: 1 });
+            goToPage(0);
+        };
+    </script>
+</body>
+</html>
