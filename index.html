@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONGRATULATIONS PENGLOW | 2.49K STRONG 💜</title>
+    <style>
+        /* --- CORE CONFIGURATIONS & THEME VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        :root {
+            --bg-dark: #030014;
+            --purple-glow: rgba(168, 85, 247, 0.4);
+            --cyan-glow: rgba(6, 182, 212, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.07);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: #f1f5f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND GRADIENT NEBULA LAYER --- */
+        .nebula {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(168, 85, 247, 0.08), transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.06), transparent 50%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* --- SCROLL PROGRESS INDICATOR BAR --- */
+        #scroll-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            width: 0%;
+            background: linear-gradient(90deg, #a855f7, #ec4899, #06b6d4);
+            z-index: 100;
+            box-shadow: 0 -2px 15px rgba(168, 85, 247, 0.5);
+            transition: width 0.1s linear;
+        }
+
+        /* --- GLASSMORPHISM COMPONENTS --- */
+        .glass-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-panel:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-4px);
+        }
+
+        /* --- TYPOGRAPHY & DESIGN DESIGNATIONS --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-header p {
+            color: #94a3b8;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* --- BUTTON MATRICES --- */
+        .btn-primary {
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .btn-secondary {
+            background: rgba(15, 23, 42, 0.8);
+            color: #06b6d4;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- CANVAS CONFIGURATION LAYER --- */
+        #party-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 90;
+        }
+
+        /* --- FIXED HUD BAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: rgba(3, 0, 20, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-b: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+        }
+        .logo {
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            background: linear-gradient(90deg, #fff, #a855f7, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- SECTION SPECIFIC LAYOUT MATRICES --- */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* 1. HERO */
+        #hero {
+            min-height: screen;
+            padding-top: 12rem;
+            text-align: center;
+        }
+        #hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+        #hero .glow-text {
+            background: linear-gradient(90deg, #c084fc, #f472b6, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.3));
+        }
+        .counter-box {
+            margin: 2.5rem auto;
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+        .counter-number {
+            font-size: 4.5rem;
+            font-weight: 900;
+            font-family: monospace;
+            background: linear-gradient(180deg, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 2. TIMELINE */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .timeline-card h3 { color: #fff; margin: 0.5rem 0; font-size: 1.2rem; }
+        .timeline-card p { color: #94a3b8; font-size: 0.85rem; line-height: 1.4; }
+        .badge {
+            background: rgba(6, 182, 212, 0.15);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* 3. STREAMER SPOTLIGHT */
+        .spotlight-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .spotlight-layout { grid-template-columns: 2fr 3fr; }
+        }
+        .avatar-glow-container {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto;
+            border-radius: 32px;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
+            padding: 4px;
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.25);
+        }
+        .avatar-internal {
+            background: #06011e;
+            width: 100%;
+            height: 100%;
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .avatar-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(90deg, #c084fc, #f472b6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .stats-deck {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+        }
+        .stat-val { font-size: 1.5rem; font-weight: 800; color: #e2e8f0; font-family: monospace;}
+
+        /* 4. FAN WALL */
+        .fan-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .fan-layout { grid-template-columns: 3fr 2fr; }
+        }
+        .comment-stream {
+            max-height: 340px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+        .comment-node {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .comment-node-meta { font-size: 0.75rem; color: #64748b; font-weight: bold; margin-bottom: 0.25rem;}
+        .comment-node-meta span { color: #f1f5f9; margin-right: 0.5rem; }
+        .comment-node-body { font-size: 0.9rem; color: #cbd5e1; }
+        
+        .wish-form input, .wish-form textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+        .wish-form input:focus, .wish-form textarea:focus {
+            outline: none;
+            border-color: #a855f7;
+        }
+
+        /* 5. GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            height: 220px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            background: linear-gradient(135deg, #1e1b4b, #020617);
+            cursor: pointer;
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(3,0,20,0.9) 20%, transparent 80%);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .gallery-overlay span { font-size: 0.7rem; font-family: monospace; color: #06b6d4; text-transform: uppercase; font-weight: bold;}
+        .gallery-overlay h4 { font-size: 1.1rem; color: white; margin-top: 0.25rem; }
+
+        /* 6. GAMING VIBES */
+        .vibes-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        @media (min-width: 768px) {
+            .vibes-layout { grid-template-columns: 1fr 1fr; }
+        }
+        .vibes-list-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .indicator-dot { width: 8px; height: 8px; background: #06b6d4; border-radius: 50%; box-shadow: 0 0 10px #06b6d4;}
+
+        /* 7. CELEBRATION DETONATOR */
+        .detonator-zone {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 8. MEMORY SCRAPBOOK */
+        .scrap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .scrap-card {
+            background: linear-gradient(135deg, #090526, #030014);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        .scrap-card p { font-style: italic; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
+        .scrap-footer { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; font-weight: bold;}
+
+        /* 9. FUTURE ROADMAP */
+        .roadmap-stack { max-width: 700px; margin: 0 auto; display: flex; flex-col; gap: 1.5rem;}
+        .progress-container { width: 100%; height: 10px; background: rgba(0,0,0,0.5); border-radius: 999px; overflow: hidden; margin: 0.5rem 0; border: 1px solid rgba(255,255,255,0.05); }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, #a855f7, #06b6d4); border-radius: 999px; }
+
+        /* 10. FINAL THANK YOU */
+        #thank-you {
+            text-align: center;
+            padding: 10rem 0;
+        }
+        #thank-you h2 { font-size: 5rem; font-weight: 900; letter-spacing: -0.04em; }
+        #thank-you p { font-size: 1.2rem; color: #94a3b8; max-width: 600px; margin: 1.5rem auto; line-height: 1.6; }
+        .sign-off { font-family: monospace; font-size: 0.8rem; color: #475569; margin-top: 4rem; letter-spacing: 0.2em; text-transform: uppercase;}
+
+        /* --- NOTIFICATION COMPONENT --- */
+        #notification-center {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 110;
+        }
+        .toast {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: white;
+            font-size: 0.85rem;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-top: 0.5rem;
+            animation: slideIn 0.3s ease forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- RUNTIME SYSTEMS LAYERS -->
+    <div class="nebula"></div>
+    <div id="scroll-bar"></div>
+    <canvas id="party-canvas"></canvas>
+    <div id="notification-center"></div>
+
+    <!-- HUD MENU INTERFACE -->
+    <header>
+        <div class="logo">PENGLOW // MATRIX</div>
+        <div>
+            <span class="badge">SYSTEM STATUS: ARCHIVE_ONLINE</span>
+        </div>
+    </header>
+
+    <!-- 1. HERO LANDING PAGE -->
+    <section id="hero">
+        <div class="container">
+            <span class="badge" style="margin-bottom: 1rem;">MILESTONE EVENT BROADCAST</span>
+            <h1>CONGRATULATIONS PENGLOW<br><span class="glow-text">2.49K STRONG 💜</span></h1>
+            <p>From the first stream to an unstoppable crew. Together, we built an empire of cozy vibes and epic plays.</p>
+            
+            <div class="counter-box">
+                <div class="counter-number" id="sub-counter">2,400</div>
+                <div style="font-size: 0.8rem; font-weight: bold; color: #a855f7; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.5rem;">Verified Community Members</div>
+            </div>
+
+            <div style="margin-top: 1rem;">
+                <a href="#timeline" class="btn-primary" style="margin-right: 1rem;">Start the Journey</a>
+                <button class="btn-secondary" onclick="triggerConfettiSystem()">Play Celebration</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. THE JOURNEY TIMELINE -->
+    <section id="timeline">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Chronicles</h2>
+                <p>The structural epochs of Penglow's digital rise.</p>
+            </div>
+            <div class="timeline-grid">
+                <div class="glass-panel timeline-card" onclick="triggerNotification('Archive Module 01 Accessed')">
+                    <span class="badge">0 Subs</span>
+                    <h3>The Spark</h3>
+                    <p>Setting up the rig, configuring bitrates, testing audio gains, and deployment of the first VOD.</p>
+                </div>
+                <div class="glass-panel timeline-card" onclick="triggerNotification('Archive Module 02 Accessed')">
+                    <span class="badge">500 Subs</span>
+                    <h3>Early Streams</h3>
+                    <p>Discovering core style paradigms, establishing high-end lo-fi ambiance, meeting regular chat nodes.</p>
+                </div>
+                <div class="glass-panel timeline-card" onclick="triggerNotification('Archive Module 03 Accessed')">
+                    <span class="badge">1K Subs</span>
+                    <h3>The Gathering</h3>
+                    <p>Clip channels taking flight, legendary reaction content generation, community inside jokes turn into standard vocabulary.</p>
+                </div>
+                <div class="glass-panel timeline-card" onclick="triggerNotification('Archive Module 04 Accessed')">
+                    <span class="badge">2K Subs</span>
+                    <h3>Milestone Synergy</h3>
+                    <p>Integration of dedicated community server matrix. Charity execution events successfully achieved.</p>
+                </div>
+                <div class="glass-panel timeline-card" onclick="triggerNotification('Archive Module 05 Accessed')">
+                    <span class="badge">2.49K Now</span>
+                    <h3>Apex Overdrive</h3>
+                    <p>The current Golden Era. Optimal performance parameters reached. Infinite execution potentials incoming.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. STREAMER SPOTLIGHT -->
+    <section id="spotlight">
+        <div class="container">
+            <div class="glass-panel spotlight-layout">
+                <div class="avatar-glow-container">
+                    <div class="avatar-internal">
+                        <div class="avatar-placeholder">P_G</div>
+                        <h3 style="color: white; font-weight: 800;">Penglow</h3>
+                        <p style="font-size: 0.75rem; color: #06b6d4; font-family: monospace; margin-top: 0.25rem;">@Creator_Core</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="badge" style="margin-bottom: 0.5rem;">Identity Specifications</span>
+                    <h2 style="font-size: 2rem; font-weight: 900; color: white; text-transform: uppercase;">The Creator Matrix</h2>
+                    <p style="color: #94a3b8; margin-top: 1rem; font-size: 0.95rem; line-height: 1.6;">
+                        Architect of high-tier gameplay modules and premium community environments. Penglow balances elite competitive tracking matrices with down-to-earth personal chat interaction channels.
+                    </p>
+                    <div class="stats-deck">
+                        <div class="stat-card">
+                            <div style="font-size: 0.7rem; color: #64748b; font-weight: bold; text-transform: uppercase;">Sub Base</div>
+                            <div class="stat-val" style="color: #a855f7;">2,490+</div>
+                        </div>
+                        <div class="stat-card">
+                            <div style="font-size: 0.7rem; color: #64748b; font-weight: bold; text-transform: uppercase;">Run Hours</div>
+                            <div class="stat-val" style="color: #ec4899;">1,200+</div>
+                        </div>
+                        <div class="stat-card">
+                            <div style="font-size: 0.7rem; color: #64748b; font-weight: bold; text-transform: uppercase;">Vibe Index</div>
+                            <div class="stat-val" style="color: #06b6d4;">99.9%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FAN WALL -->
+    <section id="fan-wall">
+        <div class="container">
+            <div class="section-header">
+                <h2>Community Comms Feed</h2>
+                <p>Direct live data streams generated by the fan collective matrix.</p>
+            </div>
+            <div class="fan-layout">
+                <div class="comment-stream" id="chat-box">
+                    <div class="comment-node">
+                        <div class="comment-node-meta"><span>GamerVibes</span> 2m ago</div>
+                        <div class="comment-node-body">2.49K HYPE! You deserve this so much! Every late night stream has been absolute gold! 🎉</div>
+                    </div>
+                    <div class="comment-node">
+                        <div class="comment-node-meta"><span>ZenStreamer</span> 5m ago</div>
+                        <div class="comment-node-body">Your cozy lofi setups literally got me through university finals week. Infinite thanks Penglow! 💜</div>
+                    </div>
+                    <div class="comment-node">
+                        <div class="comment-node-meta"><span>LofiPenguin</span> 12m ago</div>
+                        <div class="comment-node-body">The grinding sessions are unmatched. Next destination stop is 3K let's get it! 🚀</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="glass-panel">
+                        <h3 style="font-size: 1.1rem; font-weight: 800; color: white; margin-bottom: 1rem; text-transform: uppercase;">Inject Transmission</h3>
+                        <form class="wish-form" onsubmit="injectComment(event)">
+                            <input type="text" id="form-user" placeholder="Handle (e.g., UltraPenguin)" required maxlength="25">
+                            <textarea id="form-text" rows="3" placeholder="Write signal message data..." required maxlength="150"></textarea>
+                            <button type="submit" class="btn-primary" style="width: 100%;">Broadcast Signal Node</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. BEST MOMENTS GALLERY -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Visual Archives</h2>
+                <p>Screenshots and content capture nodes recorded on the grid.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="triggerNotification('Inspecting: The 2K Climax Still')">
+                    <div class="gallery-overlay">
+                        <span>Thumbnail Art</span>
+                        <h4>The 2K Climax Sequence</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="triggerNotification('Inspecting: Late Night Overlays')">
+                    <div class="gallery-overlay">
+                        <span>Stream Assets</span>
+                        <h4>Late Night Ambient Lounge</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="triggerNotification('Inspecting: Clutch Capture Data')">
+                    <div class="gallery-overlay">
+                        <span>VOD Capture</span>
+                        <h4>Tactical Apex Play No. 14</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. GAMING / STREAM VIBES SECTION -->
+    <section id="vibes">
+        <div class="container">
+            <div class="glass-panel vibes-layout">
+                <div>
+                    <span class="badge" style="margin-bottom: 0.5rem;">Operational Parameters</span>
+                    <h2 style="font-size: 2rem; font-weight: 900; color: white; text-transform: uppercase;">Current Core Systems</h2>
+                    <p style="color: #94a3b8; margin: 1rem 0 2rem 0; font-size: 0.95rem; line-height: 1.6;">
+                        High-octane operational targets currently executing live across the broadcast network.
+                    </p>
+                    <div class="vibes-list-item"><div class="indicator-dot"></div> Valorant & Tactical Shooter Modules</div>
+                    <div class="vibes-list-item"><div class="indicator-dot"></div> Story-Driven Indie Masterpieces</div>
+                    <div class="vibes-list-item"><div class="indicator-dot"></div> Just Chatting Analytics & Deep Dives</div>
+                    <div class="vibes-list-item"><div class="indicator-dot"></div> Community Chaos Escalation Nights</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.4); border-radius: 16px; border: 1px solid var(--glass-border); padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="font-family: monospace; font-size: 0.8rem; color: #a855f7; font-weight: bold;">[HARDWARE HARDENING INTEGRITY]</div>
+                    <div style="font-size: 1.8rem; font-weight: 900; color: white; margin-top: 0.5rem;">STABLE FPS MATRIX</div>
+                    <div style="color: #64748b; font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.5;">Peripherals, audio capturing cards, mixing arrays, and computation processors synchronized inside peak parameters.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CELEBRATION SECTION -->
+    <section id="celebration">
+        <div class="container">
+            <div class="glass-panel detonator-zone">
+                <span class="badge" style="margin-bottom: 0.5rem;">Interactive Core Matrix</span>
+                <h2 style="font-size: 2.2rem; font-weight: 900; color: white; text-transform: uppercase;">Ignite Celebration System</h2>
+                <p style="color: #94a3b8; margin: 1rem 0 2rem 0; font-size: 0.95rem;">Execute full digital confetti graphics detonation sequence to signify the milestone payload.</p>
+                <button class="btn-primary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;" onclick="triggerConfettiSystem()">DETONATE PARTY PAYLOAD 🎉</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. MEMORY BOOK -->
+    <section id="scrapbook">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Scrapbook Memories</h2>
+                <p>Historical database logs tracking long-term development.</p>
+            </div>
+            <div class="scrap-grid">
+                <div class="scrap-card">
+                    <p>"The audio profiles were spiking, framing metrics were totally broken, but the collective chat energy was pure premium grade from index one. We instantly understood this configuration was specialized."</p>
+                    <div class="scrap-footer">Log Entry: Phase 01 Origin</div>
+                </div>
+                <div class="scrap-card">
+                    <p>"An absolute structural emotional breakdown on stream during the 1K event milestone. Pure alignment of user operations, structural spam mechanics, and 8 hours straight of pure celebration execution."</p>
+                    <div class="scrap-footer">Log Entry: The 1,000 Milestone</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FUTURE GOALS SECTION -->
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mission Roadmap</h2>
+                <p>Future architectural expansions and projection limits.</p>
+            </div>
+            <div class="roadmap-stack">
+                <div class="glass-panel">
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 0.95rem;">
+                        <span>3.00K Subscribers Core Target</span>
+                        <span style="color: #06b6d4; font-family: monospace;">83%</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-bar" style="width: 83%"></div></div>
+                    <p style="color: #64748b; font-size: 0.8rem; margin-top: 0.25rem;">Custom channel asset deployment + 12-hour continuous broadcasting operation.</p>
+                </div>
+                <div class="glass-panel">
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 0.95rem;">
+                        <span>5.00K Advanced Community Grid</span>
+                        <span style="color: #06b6d4; font-family: monospace;">50%</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-bar" style="width: 50%"></div></div>
+                    <p style="color: #64748b; font-size: 0.8rem; margin-top: 0.25rem;">Physical item construction launch + tournament system organization structures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FINAL THANK YOU PAGE -->
+    <section id="thank-you">
+        <div class="container">
+            <h2>THANK YOU, <span style="background: linear-gradient(90deg, #c084fc, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PENGLOW</span></h2>
+            <p>From every stream, laugh, and late-night grind — your community will always be here beside you.</p>
+            <div class="sign-off">End of Transmission // Signal Terminated 💜</div>
+        </div>
+    </section>
+
+    <!-- SYSTEM AUTOMATION SCRIPT -->
+    <script>
+        // --- TICKING DIGITAL SUBSCRIBER ENGINE ---
+        const counterElement = document.getElementById('sub-counter');
+        let currentCount = 2400;
+        const targetCount = 2490;
+
+        function runTicker() {
+            if(currentCount < targetCount) {
+                currentCount += 3;
+                counterElement.innerText = (currentCount / 1000).toFixed(2) + "K";
+                setTimeout(runTicker, 40);
+            } else {
+                counterElement.innerText = "2.49K";
+            }
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(runTicker, 500);
+        });
+
+        // --- NOTIFICATION ENGINE ---
+        function triggerNotification(text) {
+            const center = document.getElementById('notification-center');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = `[SECURE ACCESS] : ${text}`;
+            center.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // --- SCROLL MATRIX TRACKER ---
+        window.addEventListener('scroll', () => {
+            const scrollBar = document.getElementById('scroll-bar');
+            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (totalScroll > 0) {
+                const percentage = (window.pageYOffset / totalScroll) * 100;
+                scrollBar.style.width = percentage + '%';
+            }
+        });
+
+        // --- CHAT FORM TRANSVERSE PROCESSING ---
+        function injectComment(event) {
+            event.preventDefault();
+            const userVal = document.getElementById('form-user').value;
+            const textVal = document.getElementById('form-text').value;
+            const chatBox = document.getElementById('chat-box');
+
+            const node = document.createElement('div');
+            node.className = 'comment-node';
+            node.innerHTML = `
+                <div class="comment-node-meta"><span>${userVal}</span> Just now</div>
+                <div class="comment-node-body">${textVal}</div>
+            `;
+            chatBox.insertBefore(node, chatBox.firstChild);
+            
+            document.getElementById('form-user').value = '';
+            document.getElementById('form-text').value = '';
+            triggerNotification('Signal Injection Successfully Broadcasted');
+        }
+
+        // --- CANVAS CONFETTI PARTICLE SIMULATOR ---
+        const canvas = document.getElementById('party-canvas');
+        const ctx = canvas.getContext('2d');
+        let activeParticles = [];
+
+        function resizePartyCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizePartyCanvas);
+        resizePartyCanvas();
+
+        function triggerConfettiSystem() {
+            triggerNotification('Detonation Signal Recognized');
+            const colors = ['#a855f7', '#ec4899', '#06b6d4', '#3b82f6', '#f43f5e'];
+            
+            for (let i = 0; i < 120; i++) {
+                activeParticles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2 + 100,
+                    dirX: (Math.random() - 0.5) * 16,
+                    dirY: (Math.random() * -16) - 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: Math.random() * 8 + 6,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: (Math.random() - 0.5) * 12
+                });
+            }
+            if(activeParticles.length === 120) {
+                renderPartyFrame();
+            }
+        }
+
+        function renderPartyFrame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let checkLife = false;
+
+            activeParticles.forEach(p => {
+                p.x += p.dirX;
+                p.y += p.dirY;
+                p.dirY += 0.28; // Downward gravity component
+                p.rotation += p.rotationSpeed;
+
+                if (p.y < canvas.height) {
+                    checkLife = true;
+                }
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+            });
+
+            if (checkLife) {
+                requestAnimationFrame(renderPartyFrame);
+            } else {
+                activeParticles = [];
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+    </script>
+</body>
+</html>
